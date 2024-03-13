@@ -30,25 +30,23 @@ function addR() {
 
 // Add a column
 function addC() {
-    // alert("Clicked Add Col"); // Replace this line with your code.
-    // Add a new column
     let table = document.getElementById("grid");
-    let newCell;
     numCols++;
-    // Add a new cell
-    for (let i = 0; i < numRows; i++) {
-        newCell = table.rows[i].insertCell();
+
+    //Add a row if this is the very first column and there are no rows (i.e. 1x1)
+    if(numRows==0){
+        addR();
+    } else{
+
+        for(let i = 0; i < table.rows.length; i++){
+            let newRow = table.rows[i];
+            let newCell = newRow.insertCell(0);
+            //Add event listener to each cell
+            newCell.addEventListener("click", function() {
+                newCell.style.backgroundColor = colorSelected;
+            });
+        }
     }
-
-    // Add event listener to each cell
-    for (let i = 0; i < numRows; i++) {
-        newCell = table.rows[i].insertCell();
-        newCell.addEventListener("click", function() {
-            newCell.style.backgroundColor = colorSelected;
-        });
-    }
-
-
 }
 
 // Remove a row
