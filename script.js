@@ -70,12 +70,23 @@ function removeC() {
 // Set global variable for selected color
 function selectColor(){
     colorSelected = document.getElementById("selectedColorId").value;
-    console.log(colorSelected);
 }
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+    let rows = table.getElementsByTagName("tr"); // Get all of the rows
+
+    //nested loop to iterate through entire grid.
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td"); // Get all of the cells in this row
+        for (let j = 0; j < cells.length; j++) {
+            if(cells[j].style.backgroundColor == "" | cells[j].style.backgroundColor == "white") //Check to see if colored or not
+            {
+                cells[j].style.backgroundColor = colorSelected; // Set the background color of each cell
+            } 
+        }
+    }
 }
 
 // Fill all cells
