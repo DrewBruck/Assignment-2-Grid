@@ -5,27 +5,25 @@ let colorSelected;
 
 // Add a row
 function addR() {
-    // alert("Clicked Add Row"); // Replace this line with your code.
+    
     // Add a new row
     let table = document.getElementById("grid");
     let newRow = table.insertRow();
-    let newCell = newRow.insertCell();
     numRows++;
-    numCols++;
-    // Add a new cell
-    for (let i = 0; i < numCols; i++) {
-        newCell = newRow.insertCell();
+    
+    //Add a column if this is the very first row (i.e. 1x1)
+    if(numCols==0){
+        numCols = 1;
     }
 
-    // Add event listener to each cell
+    // Add a new cell
     for (let i = 0; i < numCols; i++) {
-        newCell = newRow.insertCell();
+        let newCell = newRow.insertCell();
+        // Add event listener to each cell
         newCell.addEventListener("click", function() {
             newCell.style.backgroundColor = colorSelected;
         });
     }
-
-
 }
 
 // Add a column
