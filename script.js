@@ -47,46 +47,72 @@ function addC() {
     }
 }
 
-// Remove a row
+// Remove a row  
 function removeR() {
-    // alert("Clicked Remove Row"); // Replace this line with your code.
-    // Remove a row
     let table = document.getElementById("grid");
-    table.deleteRow(numRows - 1);
-    numRows--;
-    numCols--;
-
+    if(numRows > 0){
+        table.deleteRow(numRows - 1);
+        numRows--;
+    }
 }
 
-// Remove a column
-function removeC() {
-    // alert("Clicked Remove Col"); // Replace this line with your code.
-    // Remove a column
+// Remove a column 
+function removeC() { 
     let table = document.getElementById("grid");
-    for (let i = 0; i < numRows; i++) {
-        table.rows[i].deleteCell(numCols - 1);
+    if(numCols > 0){ //iterate through rows, and delete last cell of each row.
+        for (let i = 0; i < numRows; i++) {
+            table.rows[i].deleteCell(-1);
+        }
+        numCols--;
     }
-
-    numCols--;
 }
 
 // Set global variable for selected color
 function selectColor(){
     colorSelected = document.getElementById("selectedColorId").value;
-    console.log(colorSelected);
 }
 
 // Fill all uncolored cells
 function fillU(){
-    alert("Clicked Fill All Uncolored"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+    let rows = table.getElementsByTagName("tr"); // Get all of the rows
+
+    //nested loop to iterate through entire grid.
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td"); // Get all of the cells in this row
+        for (let j = 0; j < cells.length; j++) {
+            if(cells[j].style.backgroundColor == "" | cells[j].style.backgroundColor == "white") //Check to see if colored or not
+            {
+                cells[j].style.backgroundColor = colorSelected; // Set the background color of each cell
+            } 
+        }
+    }
 }
 
-// Fill all cells
-function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+//Fill all cells with selected color
+function fillAll() {
+    let table = document.getElementById("grid");
+    let rows = table.getElementsByTagName("tr"); // Get all of the rows
+
+    //nested loop to iterate through entire grid.
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td"); // Get all of the cells in this row
+        for (let j = 0; j < cells.length; j++) {
+            cells[j].style.backgroundColor = colorSelected; // Set the background color of each cell
+        }
+    }
 }
 
 // Clear all cells
 function clearAll(){
-    alert("Clicked Clear All"); // Replace this line with your code.
+    let table = document.getElementById("grid");
+    let rows = table.getElementsByTagName("tr"); // Get all of the rows
+
+    //nested loop to iterate through entire grid.
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td"); // Get all of the cells in this row
+        for (let j = 0; j < cells.length; j++) {
+            cells[j].style.backgroundColor = "white"; // Set the background color of each cell back to white
+        }
+    }
 }
