@@ -89,9 +89,18 @@ function fillU(){
     }
 }
 
-// Fill all cells
-function fillAll(){
-    alert("Clicked Fill All"); // Replace this line with your code.
+//Fill all cells with selected color
+function fillAll() {
+    let table = document.getElementById("grid");
+    let rows = table.getElementsByTagName("tr"); // Get all of the rows
+
+    //nested loop to iterate through entire grid.
+    for (let i = 0; i < rows.length; i++) {
+        let cells = rows[i].getElementsByTagName("td"); // Get all of the cells in this row
+        for (let j = 0; j < cells.length; j++) {
+            cells[j].style.backgroundColor = colorSelected; // Set the background color of each cell
+        }
+    }
 }
 
 // Clear all cells
