@@ -47,27 +47,24 @@ function addC() {
     }
 }
 
-// Remove a row
+// Remove a row  
 function removeR() {
-    // alert("Clicked Remove Row"); // Replace this line with your code.
-    // Remove a row
     let table = document.getElementById("grid");
-    table.deleteRow(numRows - 1);
-    numRows--;
-    numCols--;
-
+    if(numRows > 0){
+        table.deleteRow(numRows - 1);
+        numRows--;
+    }
 }
 
-// Remove a column
-function removeC() {
-    // alert("Clicked Remove Col"); // Replace this line with your code.
-    // Remove a column
+// Remove a column 
+function removeC() { 
     let table = document.getElementById("grid");
-    for (let i = 0; i < numRows; i++) {
-        table.rows[i].deleteCell(numCols - 1);
+    if(numCols > 0){ //iterate through rows, and delete last cell of each row.
+        for (let i = 0; i < numRows; i++) {
+            table.rows[i].deleteCell(-1);
+        }
+        numCols--;
     }
-
-    numCols--;
 }
 
 // Set global variable for selected color
